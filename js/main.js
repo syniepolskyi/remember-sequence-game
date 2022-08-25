@@ -1,13 +1,25 @@
 
-const cellsRef = document.querySelector(".cells")
+const cellsRef = document.querySelector(".cells tbody")
 const btnRef = document.querySelector(".start-btn")
 
-Array.from(Array(100).keys()).forEach((el) => {
-    setTimeout(() => {
-        cellsRef.innerHTML += `<button type="button" class="cell" data-idx="${el}" disabled>${el}</button>`
-    }, 10 + el*10)
-},'')
 
+
+Array.from(Array(10).keys()).forEach((el) => {
+    setTimeout(() => {
+        let markup = "<tr>"
+        Array.from(Array(10).keys()).forEach((el2) => {
+            markup += `<td>`
+            +`<button type="button" class="cell" data-idx="${el*10 + el2}" disabled>`
+            +`${el*10 + el2}`
+            +`</button>`
+            +`</td>`
+        })
+        markup += "</tr>"
+        cellsRef.innerHTML += markup
+    }, 10 + el*10)
+})
+
+cellsRef.innerHTML += "</tr>"
 
 let seconds = 5
 let level = +localStorage.getItem("level") || 1
@@ -145,3 +157,5 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
     document.querySelector(".level > span").textContent = level
     localStorage.removeItem("level")
 })
+
+document.querySelector('video').play();
