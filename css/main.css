@@ -26,6 +26,21 @@
     }
 }
 
+.flex {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex > div {
+        flex-grow: 1;
+    }
+}
+
 button {
     position: relative;
     cursor: pointer;
@@ -114,4 +129,10 @@ button {
     margin-left: auto; 
     margin-right: auto; 
     margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .howtoplay-video {
+        margin-top: 0;
+    }
 }

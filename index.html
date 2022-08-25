@@ -11,13 +11,25 @@
 <body>
     <section class="game-section">
         <div class="container">
-            <button type="button" class="start-btn">Грати</button>
-            <table class="cells">
-                <tbody></tbody>
-            </table>
-            <p class="level">Рівень: <span>1</span></p>
-            <p class="reload-level-container"><button type="button" class="reload-level">&#x21bb;</button></p>
-            <img class="howtoplay-video" src="https://user-images.githubusercontent.com/101953791/186662327-387062cd-668a-4aa3-adbc-80244e894042.gif" width=300 alt="How to play gif - monkey" />
+            <div class="flex">
+                <div>
+                    <button type="button" class="start-btn">Грати</button>
+                    <table class="cells">
+                        <tbody></tbody>
+                    </table>
+                    <p class="level">Рівень: <span>1</span></p>
+                    <p class="reload-level-container">
+                        <button type="button" class="reload-level">&#x21bb;</button>
+                    </p>
+                </div>
+                <div>
+                    <img 
+                        class="howtoplay-video" 
+                        src="https://user-images.githubusercontent.com/101953791/186662327-387062cd-668a-4aa3-adbc-80244e894042.gif" 
+                        width=300 
+                        alt="How to play gif - monkey" />
+                </div>
+            </div>
         </div>
     </section>
     <script src="./js/main.js"></script>
