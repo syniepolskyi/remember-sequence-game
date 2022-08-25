@@ -99,3 +99,11 @@ button {
 .level, .reload-level-container {
     text-align: center;
 }
+
+.howtoplay-video {
+    display: block; 
+    width: 300px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: 10px;
+}
