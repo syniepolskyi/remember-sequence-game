@@ -94,9 +94,9 @@ button {
     justify-content: center;
     width: 21px;
     height: 25px;
-    background-color: lightblue;
+    background-color: transparent;
     color: #101010;
-    border: 1px solid orange;
+    border: 1px solid #C0C0C0;
     border-radius: 2px;
 }
 
