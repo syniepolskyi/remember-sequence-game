@@ -28,17 +28,18 @@ let orderCounter = 1
 document.querySelector(".level > span").textContent = level
 
 function generateAndRemember(){
-    if(seconds === 0){
+    if(seconds <= 0){
         seconds = -1
         document.querySelector(".sleepy-mode").setAttribute("disabled","disabled")
         hideSeq()
         return
     }
     if(seconds === secondsToRemember){
-        btnRef.setAttribute("disabled","disabled")
+        btnRef.setAttribute("data-wait","on")
+        btnRef.removeAttribute("disabled")
         generateRandomSeq()
     }
-    const str = `Запам'ятовуйте (${seconds})`
+    const str = `Натисніть, якщо запам'ятали (${seconds})`
     seconds--
     btnRef.textContent = str
     setTimeout(() => {
@@ -114,10 +115,12 @@ function hideSeq(){
             el.textContent = '?'
             el.removeAttribute("disabled")
         })
-        seconds = 3 + level
+        seconds = secondsToRemember + level
     }
     const str = `Натискайте у тому ж порядку (${seconds})`
     seconds--
+    btnRef.removeAttribute("data-wait")
+    btnRef.setAttribute("disabled", "disabled")
     btnRef.textContent = str
     setTimeout(() => {
         hideSeq()
@@ -125,6 +128,11 @@ function hideSeq(){
 }
 
 btnRef.addEventListener("click", (e) => {
+    if(e.currentTarget.getAttribute("data-wait")){
+        e.currentTarget.removeAttribute("data-wait")
+        e.currentTarget.setAttribute("disabled", "disabled")
+        return 
+    }
     generateAndRemember()
 })
 
@@ -161,6 +169,12 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
     level = 1
     document.querySelector(".level > span").textContent = level
     localStorage.removeItem("level")
+    secondsToRemember = 5
+    seconds = secondsToRemember
+    document.querySelector(".sleepy-mode").removeAttribute("disabled")
+    document.querySelector(".sleepy-mode").removeAttribute("data-set")
+    document.querySelector(".sleepy-mode").textContent = 'Режим "Спросоння"'
+    generateAndRemember()
 })
 
 document.querySelector(".sleepy-mode").addEventListener("click", (ev) => {
