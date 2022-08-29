@@ -40,7 +40,7 @@ function generateAndRemember(){
         btnRef.removeAttribute("disabled")
         generateRandomSeq()
     }
-    const str = `Натисніть, якщо запам'ятали (${seconds})`
+    const str = `Are you ready? (${seconds})`
     seconds--
     btnRef.textContent = str
     timeId = setTimeout(() => {
