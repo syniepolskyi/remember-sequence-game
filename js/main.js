@@ -84,16 +84,16 @@ function hideSeq(){
     if(seconds === 0 || isSuccess || isLoss){
         seconds = secondsToRemember
         orderCounter = 1
-        btnRef.textContent = "Час вийшов"
+        btnRef.textContent = "Time is up 🕝"
         if(isSuccess){
             level++
             document.querySelector(".level > span").textContent = level
             localStorage.setItem("level", level)
-            btnRef.textContent = "🎉🎉 ПЕРЕМОГА 🎉🎉"
+            btnRef.textContent = "🎉🎉 WELL DONE 🎉🎉"
             cellsRef.classList.toggle("success", false)
         }
         if(isLoss){
-            btnRef.textContent = "🙊 ти можеш краще!"
+            btnRef.textContent = "🙊 you can better!"
             cellsRef.classList.toggle("loss", false)
         }
         document.querySelectorAll("[data-ordered]").forEach(el => {
@@ -118,7 +118,7 @@ function hideSeq(){
         })
         seconds = secondsToRemember + level
     }
-    const str = `Натискайте у тому ж порядку (${seconds})`
+    const str = `Restore the sequence (${seconds})`
     seconds--
     btnRef.removeAttribute("data-wait")
     btnRef.setAttribute("disabled", "disabled")
@@ -178,7 +178,7 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
     seconds = secondsToRemember
     document.querySelector(".sleepy-mode").removeAttribute("disabled")
     document.querySelector(".sleepy-mode").removeAttribute("data-set")
-    document.querySelector(".sleepy-mode").textContent = 'Режим "Спросоння"'
+    document.querySelector(".sleepy-mode").textContent = '"Sleepy" mode'
     clearTimeout(timeId)
     generateAndRemember()
 })
@@ -189,5 +189,5 @@ document.querySelector(".sleepy-mode").addEventListener("click", (ev) => {
     ev.currentTarget.setAttribute("disabled","disabled")
     ev.currentTarget.setAttribute("data-set","on")
     let str = ev.currentTarget.textContent
-    ev.currentTarget.textContent = str + " (встановлено)"
+    ev.currentTarget.textContent = str + " (enabled)"
 })
