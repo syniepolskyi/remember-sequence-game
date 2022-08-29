@@ -130,12 +130,12 @@ function hideSeq(){
 
 btnRef.addEventListener("click", (e) => {
     if(e.currentTarget.getAttribute("data-wait")){
+        clearTimeout(timeId)
         e.currentTarget.removeAttribute("data-wait")
         e.currentTarget.setAttribute("disabled", "disabled")
         seconds = -1
         document.querySelector(".sleepy-mode").setAttribute("disabled","disabled")
         hideSeq()
-        clearTimeout(timeId)
         return 
     }
     generateAndRemember()
