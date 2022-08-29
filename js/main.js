@@ -131,6 +131,7 @@ btnRef.addEventListener("click", (e) => {
     if(e.currentTarget.getAttribute("data-wait")){
         e.currentTarget.removeAttribute("data-wait")
         e.currentTarget.setAttribute("disabled", "disabled")
+        seconds = 0
         return 
     }
     generateAndRemember()
