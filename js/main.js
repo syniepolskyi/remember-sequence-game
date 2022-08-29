@@ -40,7 +40,7 @@ function generateAndRemember(){
         btnRef.removeAttribute("disabled")
         generateRandomSeq()
     }
-    const str = `Are you ready? (${seconds})`
+    const str = `💪 Are you ready? (${seconds})`
     seconds--
     btnRef.textContent = str
     timeId = setTimeout(() => {
@@ -93,7 +93,7 @@ function hideSeq(){
             cellsRef.classList.toggle("success", false)
         }
         if(isLoss){
-            btnRef.textContent = "🙊 you can better!"
+            btnRef.textContent = "🙊 you can do it!"
             cellsRef.classList.toggle("loss", false)
         }
         document.querySelectorAll("[data-ordered]").forEach(el => {
@@ -118,7 +118,7 @@ function hideSeq(){
         })
         seconds = secondsToRemember + level
     }
-    const str = `Restore the sequence (${seconds})`
+    const str = `👀 Restore the sequence (${seconds})`
     seconds--
     btnRef.removeAttribute("data-wait")
     btnRef.setAttribute("disabled", "disabled")
