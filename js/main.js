@@ -165,6 +165,7 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
 
 document.querySelector(".sleepy-mode").addEventListener("click", (ev) => {
     secondsToRemember = 10
+    seconds = secondsToRemember
     ev.currentTarget.setAttribute("disabled","disabled")
     ev.currentTarget.setAttribute("data-set","on")
     let str = ev.currentTarget.textContent
