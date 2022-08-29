@@ -21,7 +21,8 @@ Array.from(Array(10).keys()).forEach((el) => {
 
 cellsRef.innerHTML += "</tr>"
 
-let seconds = 5
+let secondsToRemember = 5
+let seconds = secondsToRemember
 let level = +localStorage.getItem("level") || 1
 let orderCounter = 1
 document.querySelector(".level > span").textContent = level
@@ -29,6 +30,7 @@ document.querySelector(".level > span").textContent = level
 function generateAndRemember(){
     if(seconds === 0){
         seconds = -1
+        document.querySelector(".sleepy-mode").setAttribute("disabled","disabled")
         hideSeq()
         return
     }
@@ -78,7 +80,7 @@ function hideSeq(){
     let isSuccess = cellsRef.classList.contains("success")
     let isLoss = cellsRef.classList.contains("loss")
     if(seconds === 0 || isSuccess || isLoss){
-        seconds = 5
+        seconds = secondsToRemember
         orderCounter = 1
         btnRef.textContent = "Час вийшов"
         if(isSuccess){
@@ -97,6 +99,9 @@ function hideSeq(){
             el.classList.toggle("cell-good", isSuccess)
             el.setAttribute("disabled", "disabled")
         })
+        if(!document.querySelector(".sleepy-mode").getAttribute("data-set")){
+            document.querySelector(".sleepy-mode").removeAttribute("disabled")
+        }
         setTimeout(() =>{
             // btnRef.textContent = "Нова Послідовність"
             // btnRef.removeAttribute("disabled")
@@ -158,4 +163,10 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
     localStorage.removeItem("level")
 })
 
-document.querySelector('video').play();
+document.querySelector(".sleepy-mode").addEventListener("click", (ev) => {
+    secondsToRemember = 10
+    ev.currentTarget.setAttribute("disabled","disabled")
+    ev.currentTarget.setAttribute("data-set","on")
+    let str = ev.currentTarget.textContent
+    ev.currentTarget.textContent = str + " (встановлено)"
+})
