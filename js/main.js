@@ -25,6 +25,7 @@ let secondsToRemember = 5
 let seconds = secondsToRemember
 let level = +localStorage.getItem("level") || 1
 let orderCounter = 1
+let timeId = 0
 document.querySelector(".level > span").textContent = level
 
 function generateAndRemember(){
@@ -42,7 +43,7 @@ function generateAndRemember(){
     const str = `Натисніть, якщо запам'ятали (${seconds})`
     seconds--
     btnRef.textContent = str
-    setTimeout(() => {
+    timeId = setTimeout(() => {
         generateAndRemember()
     }, 1000)
 }
@@ -122,7 +123,7 @@ function hideSeq(){
     btnRef.removeAttribute("data-wait")
     btnRef.setAttribute("disabled", "disabled")
     btnRef.textContent = str
-    setTimeout(() => {
+    timeId = setTimeout(() => {
         hideSeq()
     }, 1000)
 }
@@ -131,7 +132,10 @@ btnRef.addEventListener("click", (e) => {
     if(e.currentTarget.getAttribute("data-wait")){
         e.currentTarget.removeAttribute("data-wait")
         e.currentTarget.setAttribute("disabled", "disabled")
-        seconds = 0
+        seconds = -1
+        document.querySelector(".sleepy-mode").setAttribute("disabled","disabled")
+        hideSeq()
+        clearTimeout(timeId)
         return 
     }
     generateAndRemember()
@@ -175,6 +179,7 @@ document.querySelector(".reload-level").addEventListener("click", (ev) => {
     document.querySelector(".sleepy-mode").removeAttribute("disabled")
     document.querySelector(".sleepy-mode").removeAttribute("data-set")
     document.querySelector(".sleepy-mode").textContent = 'Режим "Спросоння"'
+    clearTimeout(timeId)
     generateAndRemember()
 })
 
