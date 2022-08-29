@@ -89,11 +89,11 @@ function hideSeq(){
             level++
             document.querySelector(".level > span").textContent = level
             localStorage.setItem("level", level)
-            btnRef.textContent = "ПЕРЕМОГА!"
+            btnRef.textContent = "🎉🎉 ПЕРЕМОГА 🎉🎉"
             cellsRef.classList.toggle("success", false)
         }
         if(isLoss){
-            btnRef.textContent = "поразка"
+            btnRef.textContent = "🙊 ти можеш краще!"
             cellsRef.classList.toggle("loss", false)
         }
         document.querySelectorAll("[data-ordered]").forEach(el => {
