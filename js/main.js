@@ -34,7 +34,7 @@ function generateAndRemember(){
         hideSeq()
         return
     }
-    if(seconds === 5){
+    if(seconds === secondsToRemember){
         btnRef.setAttribute("disabled","disabled")
         generateRandomSeq()
     }
